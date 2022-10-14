@@ -1,0 +1,19 @@
+{
+    "name": "hexcommand/asktoagri",
+    "description": "Backend for Ask to Agri Expert",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "Yash Gohel",
+            "email": "yashgohel16@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.4"
+    }
+}
