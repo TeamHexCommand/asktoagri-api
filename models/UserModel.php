@@ -71,6 +71,26 @@ class UserModel
         return $this->lastName;
     }
 
+    public function setFirebaseId(string $id)
+    {
+        $this->firebaseId = $id;
+    }
+
+    public function getFirebaseId(): string
+    {
+        return $this->firebaseId;
+    }
+
+    public function setDefaultFcm(string $fcm)
+    {
+        $this->defaultFcm = $fcm;
+    }
+
+    public function getDefaultFcm(): string
+    {
+        return $this->defaultFcm;
+    }
+
     public function setEmail(string $email)
     {
         $this->email = $email;
@@ -89,16 +109,6 @@ class UserModel
     public function getPassword(): string
     {
         return $this->password;
-    }
-
-    public function setDefaultFcm(string $defaultFcm)
-    {
-        $this->defaultFcm = $defaultFcm;
-    }
-
-    public function getDefaultFcm(): string
-    {
-        return $this->defaultFcm;
     }
 
     public function setMobile(string $mobile)

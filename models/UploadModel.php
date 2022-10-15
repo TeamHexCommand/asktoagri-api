@@ -9,6 +9,7 @@ class UploadModel
     public string $name;
     public string $type;
     public string $createdAt;
+    public string $base64;
 
     public function setData(array $ary)
     {
@@ -17,6 +18,7 @@ class UploadModel
         $this->name = $ary['name'] ?? "";
         $this->type = $ary['type'] ?? "";
         $this->createdAt = $ary['createdAt'] ?? "";
+        $this->base64 = $ary['base64'] ?? "";
     }
 
     public function setId(int $id)
@@ -67,5 +69,15 @@ class UploadModel
     public function getCreatedAt(): string
     {
         return $this->createdAt;
+    }
+
+    public function setBase64(string $base64)
+    {
+        $this->base64 = $base64;
+    }
+
+    public function getBase64(): string
+    {
+        return $this->base64;
     }
 }

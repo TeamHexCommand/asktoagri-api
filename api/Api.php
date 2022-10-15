@@ -61,6 +61,48 @@ class Api implements ApiInterface
                 $state->handle($request, $param, $filter, $type);
                 break;
             }
+            case "upload":
+            {
+                $state = new \app\api\Upload();
+                $state->handle($request, $param, $filter, $type);
+                break;
+            }
+            case "artical":
+            {
+                $state = new \app\api\Artical();
+                $state->handle($request, $param, $filter, $type);
+                break;
+            }
+            case "tags":
+            {
+                $state = new \app\api\Tags();
+                $state->handle($request, $param, $filter, $type);
+                break;
+            }
+            case "category":
+            {
+                $state = new \app\api\Category();
+                $state->handle($request, $param, $filter, $type);
+                break;
+            }
+            case "crops":
+            {
+                $state = new \app\api\Crops();
+                $state->handle($request, $param, $filter, $type);
+                break;
+            }
+            case "user":
+            {
+                $state = new \app\api\User();
+                $state->handle($request, $param, $filter, $type);
+                break;
+            }
+            case "query":
+            {
+                $state = new \app\api\Query();
+                $state->handle($request, $param, $filter, $type);
+                break;
+            }
             default:
             {
                 echo "Unknown!";

@@ -9,7 +9,7 @@ class ArticalModel
     public string $title = "";
     public int $category = 0;
     public string $tags = "";
-    public string $name = "";
+    public string $body = "";
     public string $createdAt = "";
 
     public function setData(array $ary)
@@ -19,7 +19,7 @@ class ArticalModel
         $this->title = $ary['title'] ?? '';
         $this->category = $ary['category'] ?? 0;
         $this->tags = $ary['tags'] ?? "";
-        $this->name = $ary['name'] ?? "";
+        $this->body = $ary['body'] ?? "";
         $this->createdAt = $ary['createdAt'] ?? "";
     }
 
@@ -73,14 +73,14 @@ class ArticalModel
         return $this->tags;
     }
 
-    public function setName(string $name)
+    public function setBody(string $body)
     {
-        $this->name = $name;
+        $this->body = $body;
     }
 
-    public function getName(): string
+    public function getBody(): string
     {
-        return $this->name;
+        return $this->body;
     }
 
     public function setCreatedAt(string $createdAt)
