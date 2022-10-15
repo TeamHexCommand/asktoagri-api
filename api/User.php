@@ -15,9 +15,12 @@ class User extends Api implements ApiInterface
     public function getQuery(string $query): string
     {
         $q = [
-            "add" => "INSERT INTO {$this->table} (`mobile`,`firebaseId`,`defaultFcm`,`city`,`longitude`,`latitude`,`defaultLang`) VALUES (?, ?, ?, ?, ?, ?, ?);",
+            "add" => "INSERT INTO {$this->table} (`mobile`,`firebaseId`,`defaultFcm`,`longitude`,`latitude`) VALUES (?, ?, ?, ?, ?);",
             "getAll" => "SELECT * FROM {$this->table}",
             "getById" => "SELECT * FROM {$this->table} WHERE `id` = ?;",
+            "getByMobile" => "SELECT * FROM {$this->table} WHERE `mobile` = ?;",
+            "getByFirebaseId" => "SELECT * FROM {$this->table} WHERE `firebaseId` = ?;",
+            "getByEmail" => "SELECT * FROM {$this->table} WHERE `email` = ?;",
             "last" => "SELECT * FROM {$this->table} ORDER BY `id` DESC LIMIT 1;"
         ];
         return $q[$query];
@@ -45,10 +48,8 @@ class User extends Api implements ApiInterface
                 $model->getMobile(),
                 $model->getFirebaseId(),
                 $model->getDefaultFcm(),
-                $model->getCity(),
                 $model->getLatitude(),
-                $model->getLongitude(),
-                $model->getDefaultLang()
+                $model->getLongitude()
             ]);
 
             if ($res) {
@@ -77,6 +78,21 @@ class User extends Api implements ApiInterface
                 case "getById" :
                 {
                     $sql->execute([$model->getId()]);
+                    break;
+                }
+                case "getByMobile" :
+                {
+                    $sql->execute([$model->getMobile()]);
+                    break;
+                }
+                case "getByEmail" :
+                {
+                    $sql->execute([$model->getEmail()]);
+                    break;
+                }
+                case "getByFirebaseId" :
+                {
+                    $sql->execute([$model->getFirebaseId()]);
                     break;
                 }
             }
