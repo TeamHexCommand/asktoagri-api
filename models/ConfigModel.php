@@ -11,6 +11,16 @@ class ConfigModel
     public string $updatedAt;
     public string $createdAt;
 
+    public function setData(array $ary)
+    {
+        $this->id = $ary['id'] ?? 0;
+        $this->user = $ary['user'] ?? 0;
+        $this->name = $ary['name'] ?? '';
+        $this->value = $ary['value'] ?? '';
+        $this->updateAt = $ary['updateAt'] ?? "";
+        $this->createdAt = $ary['createdAt'] ?? "";
+    }
+
     public function setId(int $id)
     {
         $this->id = $id;

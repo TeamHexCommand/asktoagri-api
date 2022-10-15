@@ -2,12 +2,20 @@
 
 namespace app\models;
 
-class CityModel
+class CityModel extends DistrictModel
 {
     public int $id;
     public string $name;
     public string $pincode;
     public int $district;
+
+    public function setData(array $ary)
+    {
+        $this->id = $ary['id'] ?? 0;
+        $this->district = $ary['district'] ?? 0;
+        $this->name = $ary['name'] ?? "";
+        $this->pincode = $ary['pincode'] ?? "";
+    }
 
     public function setId(int $id)
     {

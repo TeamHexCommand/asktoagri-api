@@ -2,11 +2,19 @@
 
 namespace app\models;
 
-class DistrictModel
+class DistrictModel extends StateModel
 {
     public int $id;
-    public string $name;
+    public string $districtName;
     public int $state;
+
+    public function setData(array $ary)
+    {
+        $this->id = $ary['id'] ?? 0;
+        $this->state = $ary['state'] ?? 0;
+        $this->districtName = $ary['districtName'] ?? "";
+        self::setStateName($ary['stateName'] ?? "");
+    }
 
     public function setId(int $id)
     {
@@ -18,14 +26,14 @@ class DistrictModel
         return $this->id;
     }
 
-    public function setName(string $name)
+    public function setDistrictName(string $name)
     {
-        $this->name = $name;
+        $this->districtName = $name;
     }
 
-    public function getName(): string
+    public function getDistrictName(): string
     {
-        return $this->name;
+        return $this->districtName;
     }
 
     public function setState(int $state)

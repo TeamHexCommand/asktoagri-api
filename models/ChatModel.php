@@ -17,6 +17,22 @@ class ChatModel
     public string $seenAt;
     public string $createdAt;
 
+    public function setData(array $ary)
+    {
+        $this->id = $ary['id'] ?? 0;
+        $this->sender = $ary['sender'] ?? 0;
+        $this->receiver = $ary['receiver'] ?? 0;
+        $this->msg = $ary['msg'] ?? '';
+        $this->nextMsg = $ary['nextMsg'] ?? 0;
+        $this->previousMsg = $ary['previousMsg'] ?? 0;
+        $this->file = $ary['file'] ?? 0;
+        $this->isSeen = $ary['isSeen'] ?? false;
+        $this->isDeleted = $ary['isDeleted'] ?? false;
+        $this->deleteAt = $ary['deleteAt'] ?? "";
+        $this->seenAt = $ary['seenAt'] ?? "";
+        $this->createdAt = $ary['createdAt'] ?? "";
+    }
+
     public function setId(int $id)
     {
         $this->id = $id;

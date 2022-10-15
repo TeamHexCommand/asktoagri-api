@@ -10,6 +10,15 @@ class DeviceModel
     public string $deviceId;
     public string $createdAt;
 
+    public function setData(array $ary)
+    {
+        $this->id = $ary['id'] ?? 0;
+        $this->user = $ary['user'] ?? 0;
+        $this->defaultFcm = $ary['defaultFcm'] ?? "";
+        $this->deviceId = $ary['deviceId'] ?? "";
+        $this->createdAt = $ary['createdAt'] ?? "";
+    }
+
     public function setId(int $id)
     {
         $this->id = $id;

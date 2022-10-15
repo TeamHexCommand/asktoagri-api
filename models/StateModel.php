@@ -2,11 +2,21 @@
 
 namespace app\models;
 
-class StateModel
+class StateModel extends CountriesModel
 {
     public int $id;
     public string $tag;
-    public string $name;
+    public string $stateName;
+    public int $country;
+
+    public function setData(array $ary)
+    {
+        $this->id = $ary['id'] ?? 0;
+        $this->tag = $ary['tag'] ?? "";
+        $this->stateName = $ary['stateName'] ?? "";
+        $this->country = $ary['country'] ?? 0;
+        self::setCountryName($ary['countryName'] ?? "");
+    }
 
     public function setId(int $id)
     {
@@ -28,13 +38,23 @@ class StateModel
         return $this->tag;
     }
 
-    public function setName(string $name)
+    public function setStateName(string $name)
     {
-        $this->name = $name;
+        $this->stateName = $name;
     }
 
-    public function getName(): string
+    public function getStateName(): string
     {
-        return $this->name;
+        return $this->stateName;
+    }
+
+    public function setCountry(int $country)
+    {
+        $this->country = $country;
+    }
+
+    public function getCountry(): int
+    {
+        return $this->country;
     }
 }

@@ -21,6 +21,26 @@ class UserModel
     public int $city;
     public string $createdAt;
 
+    public function setData(array $ary)
+    {
+        $this->id = $ary['id'] ?? 0;
+        $this->firstName = $ary['firstName'] ?? "";
+        $this->lastName = $ary['lastName'] ?? "";
+        $this->email = $ary['email'] ?? "";
+        $this->password = $ary['password'] ?? "";
+        $this->firebaseId = $ary['firebaseId'] ?? "";
+        $this->defaultFcm = $ary['defaultFcm'] ?? "";
+        $this->mobile = $ary['mobile'] ?? "";
+        $this->isAdmin = $ary['isAdmin'] ?? false;
+        $this->isExpert = $ary['isExpert'] ?? false;
+        $this->isBanned = $ary['isBanned'] ?? false;
+        $this->longitude = $ary['longitude'] ?? "";
+        $this->latitude = $ary['latitude'] ?? "";
+        $this->defaultLang = $ary['defaultLang'] ?? 0;
+        $this->city = $ary['city'] ?? 0;
+        $this->createdAt = $ary['createdAt'] ?? "";
+    }
+
     public function setId(int $id)
     {
         $this->id = $id;

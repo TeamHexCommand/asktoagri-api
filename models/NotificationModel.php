@@ -15,6 +15,20 @@ class NotificationModel
     public string $seenAt;
     public string $createdAt;
 
+    public function setData(array $ary)
+    {
+        $this->id = $ary['id'] ?? 0;
+        $this->user = $ary['user'] ?? 0;
+        $this->title = $ary['title'] ?? "";
+        $this->body = $ary['body'] ?? "";
+        $this->image = $ary['image'] ?? 0;
+        $this->action = $ary['action'] ?? "";
+        $this->isSeen = $ary['isSeen'] ?? false;
+        $this->isDeleted = $ary['isDeleted'] ?? false;
+        $this->seenAt = $ary['seenAt'] ?? "";
+        $this->createdAt = $ary['createdAt'] ?? "";
+    }
+
     public function setId(int $id)
     {
         $this->id = $id;

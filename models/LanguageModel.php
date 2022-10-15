@@ -8,6 +8,13 @@ class LanguageModel
     public string $tag;
     public string $name;
 
+    public function setData(array $ary)
+    {
+        $this->id = $ary['id'] ?? 0;
+        $this->tag = $ary['tag'] ?? "";
+        $this->name = $ary['name'] ?? "";
+    }
+
     public function setId(int $id)
     {
         $this->id = $id;

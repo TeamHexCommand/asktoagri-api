@@ -10,6 +10,15 @@ class UploadModel
     public string $type;
     public string $createdAt;
 
+    public function setData(array $ary)
+    {
+        $this->id = $ary['id'] ?? 0;
+        $this->user = $ary['user'] ?? 0;
+        $this->name = $ary['name'] ?? "";
+        $this->type = $ary['type'] ?? "";
+        $this->createdAt = $ary['createdAt'] ?? "";
+    }
+
     public function setId(int $id)
     {
         $this->id = $id;

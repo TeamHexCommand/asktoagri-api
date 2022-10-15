@@ -7,6 +7,12 @@ class CategoryModel
     public int $id;
     public string $name;
 
+    public function setData(array $ary)
+    {
+        $this->id = $ary['id'] ?? 0;
+        $this->name = $ary['name'] ?? "";
+    }
+
     public function setId(int $id)
     {
         $this->id = $id;

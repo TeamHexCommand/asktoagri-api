@@ -11,6 +11,16 @@ class SessionModel
     public string $ip;
     public string $createdAt;
 
+    public function setData(array $ary)
+    {
+        $this->id = $ary['id'] ?? 0;
+        $this->user = $ary['user'] ?? 0;
+        $this->token = $ary['token'] ?? "";
+        $this->deviceId = $ary['deviceId'] ?? 0;
+        $this->ip = $ary['ip'] ?? "";
+        $this->createdAt = $ary['createdAt'] ?? "";
+    }
+
     public function setId(int $id)
     {
         $this->id = $id;

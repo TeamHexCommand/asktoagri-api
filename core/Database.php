@@ -23,6 +23,7 @@ class Database
             self::$con = new \PDO(self::$dsn, self::$user, self::$password);
             self::$con->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             self::$con->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
+            self::$con->exec("SET CHARACTER SET utf8");
             return self::$con;
         }
     }

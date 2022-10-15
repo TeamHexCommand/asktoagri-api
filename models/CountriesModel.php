@@ -2,12 +2,24 @@
 
 namespace app\models;
 
-class CountriesModel
+class CountriesModel extends \app\models\BaseModel
 {
     public int $id;
     public int $cc;
     public string $tag;
-    public string $name;
+    public string $countryName;
+
+    public function __construct()
+    {
+    }
+
+    public function setData(array $ary)
+    {
+        $this->id = $ary['id'] ?? 0;
+        $this->cc = $ary['cc'] ?? 0;
+        $this->tag = $ary['tag'] ?? "";
+        $this->countryName = $ary['countryName'] ?? "";
+    }
 
     public function setId(int $id)
     {
@@ -39,13 +51,13 @@ class CountriesModel
         return $this->tag;
     }
 
-    public function setName(string $name)
+    public function setCountryName(string $name)
     {
-        $this->name = $name;
+        $this->countryName = $name;
     }
 
-    public function getName(): string
+    public function getCountryName(): string
     {
-        return $this->name;
+        return $this->countryName;
     }
 }

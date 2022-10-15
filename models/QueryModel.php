@@ -18,6 +18,23 @@ class QueryModel
     public int $solution;
     public string $createdAt;
 
+    public function setData(array $ary)
+    {
+        $this->id = $ary['id'] ?? 0;
+        $this->user = $ary['user'] ?? 0;
+        $this->title = $ary['title'] ?? "";
+        $this->body = $ary['body'] ?? "";
+        $this->file = $ary['file'] ?? 0;
+        $this->crops = $ary['crops'] ?? 0;
+        $this->category = $ary['category'] ?? 0;
+        $this->district = $ary['district'] ?? 0;
+        $this->resolved = $ary['resolved'] ?? false;
+        $this->spam = $ary['spam'] ?? false;
+        $this->tags = $ary['tags'] ?? "";
+        $this->solution = $ary['solution'] ?? 0;
+        $this->createdAt = $ary['createdAt'] ?? "";
+    }
+
     public function setId(int $id)
     {
         $this->id = $id;

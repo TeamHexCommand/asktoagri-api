@@ -5,7 +5,6 @@ $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
 use app\core\Application;
-use app\models\TagsModel;
 
 $config = [
     'db' => [
@@ -15,14 +14,17 @@ $config = [
     ]
 ];
 
-//$tags = new TagsModel();
-//$tags->setName("new");
-//
-//$db = new \app\core\Database($config['db']);
-//$con = $db->connect();
-//$query = "INSERT INTO `hc_tags`(`name`) VALUES (?)";
-//$sql = $con->prepare($query);
-//$res = $sql->execute([$tags->getName()]);
+$req = file_get_contents("php://input");
+
+if ($req != null) {
+    $data = json_decode($req, true);
+    if (isset($data['request']) && isset($data['type']) && isset($data['param']) && isset($data['filter'])) {
+        $api = new \app\api\Api($config['db']);
+        $api->handle($data['request'], $data['param'], $data['filter'], $data['type']);
+    } else {
+        echo "Unknown!";
+    }
+}
 
 //$app = new Application(dirname(__DIR__), $config);
 
