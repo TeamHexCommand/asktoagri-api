@@ -21,6 +21,7 @@ class Artical extends Api implements ApiInterface
             "getByUser" => "SELECT * FROM {$this->table} WHERE `user` = ?;",
             "getByTags" => "SELECT * FROM {$this->table} WHERE `tags` LIKE ?",
             "getByCategory" => "SELECT * FROM {$this->table} WHERE `category` = ?;",
+            "getByTrending" => "SELECT * FROM {$this->table} ORDER BY `id` DESC LIMIT 20;",
             "last" => "SELECT * FROM {$this->table} ORDER BY `id` DESC LIMIT 1;"
         ];
         return $q[$query];
@@ -70,6 +71,7 @@ class Artical extends Api implements ApiInterface
 
         try {
             switch ($filter) {
+                case "getByTrending":
                 case "getAll" :
                 {
                     $sql->execute([]);
