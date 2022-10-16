@@ -15,7 +15,7 @@ class User extends Api implements ApiInterface
     public function getQuery(string $query): string
     {
         $q = [
-            "add" => "INSERT INTO {$this->table} (`mobile`,`firebaseId`,`defaultFcm`,`latitude`,`longitude`,`ip`, `city`) VALUES (?, ?, ?, ?, ?, ?, ?);",
+            "add" => "INSERT INTO {$this->table} (`mobile`,`firebaseId`,`defaultFcm`,`latitude`,`longitude`,`ip`) VALUES (?, ?, ?, ?, ?, ?);",
             "getAll" => "SELECT * FROM {$this->table}",
             "getById" => "SELECT * FROM {$this->table} WHERE `id` = ?;",
             "getByMobile" => "SELECT * FROM {$this->table} WHERE `mobile` = ?;",
@@ -50,8 +50,7 @@ class User extends Api implements ApiInterface
                 $model->getDefaultFcm(),
                 $model->getLatitude(),
                 $model->getLongitude(),
-                self::getVisIpAddr(),
-                self::getLocation(self::getVisIpAddr())->city
+                self::getVisIpAddr()
             ]);
 
             if ($res) {
