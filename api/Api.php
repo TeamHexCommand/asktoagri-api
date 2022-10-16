@@ -34,6 +34,38 @@ class Api implements ApiInterface
         return json_encode($res);
     }
 
+    public function curl_get_file_contents($URL)
+    {
+        $c = curl_init();
+        curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($c, CURLOPT_URL, $URL);
+        $contents = curl_exec($c);
+        curl_close($c);
+
+        if ($contents) {
+            return $contents;
+        } else {
+            return false;
+        }
+    }
+
+    public function getVisIpAddr()
+    {
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            return $_SERVER['HTTP_CLIENT_IP'];
+        } else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            return $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            return $_SERVER['REMOTE_ADDR'];
+        }
+    }
+
+    public function getLocation($ip)
+    {
+        return json_decode(self::curl_get_file_contents("https://ipinfo.io/" . $ip . "?token=949ef5214b09f3"));
+    }
+
+
     public function handle(string $request, array $param, string $filter, string $type = "")
     {
         switch ($type) {

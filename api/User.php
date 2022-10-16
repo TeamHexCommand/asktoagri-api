@@ -15,7 +15,7 @@ class User extends Api implements ApiInterface
     public function getQuery(string $query): string
     {
         $q = [
-            "add" => "INSERT INTO {$this->table} (`mobile`,`firebaseId`,`defaultFcm`,`longitude`,`latitude`) VALUES (?, ?, ?, ?, ?);",
+            "add" => "INSERT INTO {$this->table} (`mobile`,`firebaseId`,`defaultFcm`,`latitude`,`longitude`,`ip`, `city`) VALUES (?, ?, ?, ?, ?, ?, ?);",
             "getAll" => "SELECT * FROM {$this->table}",
             "getById" => "SELECT * FROM {$this->table} WHERE `id` = ?;",
             "getByMobile" => "SELECT * FROM {$this->table} WHERE `mobile` = ?;",
@@ -49,7 +49,9 @@ class User extends Api implements ApiInterface
                 $model->getFirebaseId(),
                 $model->getDefaultFcm(),
                 $model->getLatitude(),
-                $model->getLongitude()
+                $model->getLongitude(),
+                self::getVisIpAddr(),
+                self::getLocation(self::getVisIpAddr())->city
             ]);
 
             if ($res) {
@@ -57,7 +59,6 @@ class User extends Api implements ApiInterface
             } else {
                 $this->res = self::getResponse(400, array("msg" => "Failed to add new user", "data" => null));
             }
-
         } catch (\PDOException $e) {
             $this->res = self::getResponse(400, array("msg" => "Failed to add new user", "data" => null));
         }
