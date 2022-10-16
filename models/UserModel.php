@@ -12,9 +12,9 @@ class UserModel
     public string $firebaseId;
     public string $defaultFcm;
     public string $mobile;
-    public bool $isAdmin;
-    public bool $isExpert;
-    public bool $isBanned;
+    public int $isAdmin;
+    public int $isExpert;
+    public int $isBanned;
     public string $longitude;
     public string $latitude;
     public int $defaultLang;
@@ -31,9 +31,9 @@ class UserModel
         $this->firebaseId = $ary['firebaseId'] ?? "";
         $this->defaultFcm = $ary['defaultFcm'] ?? "";
         $this->mobile = $ary['mobile'] ?? "";
-        $this->isAdmin = $ary['isAdmin'] ?? false;
-        $this->isExpert = $ary['isExpert'] ?? false;
-        $this->isBanned = $ary['isBanned'] ?? false;
+        $this->isAdmin = $ary['isAdmin'] ?? 0;
+        $this->isExpert = $ary['isExpert'] ?? 0;
+        $this->isBanned = $ary['isBanned'] ?? 0;
         $this->longitude = $ary['longitude'] ?? "";
         $this->latitude = $ary['latitude'] ?? "";
         $this->defaultLang = $ary['defaultLang'] ?? 0;
@@ -121,32 +121,32 @@ class UserModel
         return $this->mobile;
     }
 
-    public function setIsAdmin(bool $isAdmin)
+    public function setIsAdmin(int $isAdmin)
     {
         $this->isAdmin = $isAdmin;
     }
 
-    public function getIsAdmin(): bool
+    public function getIsAdmin(): int
     {
         return $this->isAdmin;
     }
 
-    public function setIsExpert(bool $isExpert)
+    public function setIsExpert(int $isExpert)
     {
         $this->isExpert = $isExpert;
     }
 
-    public function getIsExpert(): bool
+    public function getIsExpert(): int
     {
         return $this->isExpert;
     }
 
-    public function setIsBanned(bool $isBanned)
+    public function setIsBanned(int $isBanned)
     {
         $this->isBanned = $isBanned;
     }
 
-    public function getIsBanned(): bool
+    public function getIsBanned(): int
     {
         return $this->isBanned;
     }
