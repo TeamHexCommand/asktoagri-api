@@ -135,6 +135,18 @@ class Api implements ApiInterface
                 $state->handle($request, $param, $filter, $type);
                 break;
             }
+            case "solution":
+            {
+                $state = new \app\api\Solution();
+                $state->handle($request, $param, $filter, $type);
+                break;
+            }
+            case "config":
+            {
+                $state = new \app\api\Config();
+                $state->handle($request, $param, $filter, $type);
+                break;
+            }
             default:
             {
                 echo "Unknown!";
