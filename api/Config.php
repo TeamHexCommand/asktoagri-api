@@ -26,6 +26,7 @@ class Config extends Api implements ApiInterface
             "getByValueOfUser" => "SELECT * FROM {$this->table} WHERE `user` = ? and `value` = ?;",
             "deleteById" => "DELETE FROM {$this->table} WHERE `id` = ?;",
             "deleteByName" => "DELETE FROM {$this->table} WHERE `name` = ?;",
+            "deleteByPair" => "DELETE FROM {$this->table} WHERE `user` = ? and `name` = ? and `value` = ?;",
             "deleteByUser" => "DELETE FROM {$this->table} WHERE `user` = ?;",
             "deleteByValue" => "DELETE FROM {$this->table} WHERE `value` = ?;",
             "deleteByNameOfUser" => "DELETE FROM {$this->table} WHERE `user` = ? and `name` = ?;",
@@ -175,6 +176,11 @@ class Config extends Api implements ApiInterface
                 case "deleteByUser" :
                 {
                     $this->exec = $sql->execute([$model->getUser()]);
+                    break;
+                }
+                case "deleteByPair" :
+                {
+                    $this->exec = $sql->execute([$model->getUser(), $model->getName(), $model->getValue()]);
                     break;
                 }
                 case "deleteByName" :
