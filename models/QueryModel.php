@@ -7,6 +7,7 @@ class QueryModel
     public int $id;
     public int $user;
     public string $title;
+    public string $type;
     public string $body;
     public int $file;
     public int $crops;
@@ -22,6 +23,7 @@ class QueryModel
     {
         $this->id = $ary['id'] ?? 0;
         $this->user = $ary['user'] ?? 0;
+        $this->type = $ary['type'] ?? "";
         $this->title = $ary['title'] ?? "";
         $this->body = $ary['body'] ?? "";
         $this->file = $ary['file'] ?? 0;
@@ -53,6 +55,16 @@ class QueryModel
     public function getUser(): int
     {
         return $this->user;
+    }
+
+    public function setType(string $type)
+    {
+        $this->type = $type;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
     }
 
     public function setTitle(string $title)

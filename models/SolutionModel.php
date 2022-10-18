@@ -6,6 +6,7 @@ class SolutionModel
 {
     public int $id;
     public int $user;
+    public string $type;
     public string $title;
     public string $body;
     public int $file;
@@ -49,6 +50,16 @@ class SolutionModel
     public function getUser(): int
     {
         return $this->user;
+    }
+
+    public function setType(string $type)
+    {
+        $this->type = $type;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
     }
 
     public function setTitle(string $title)

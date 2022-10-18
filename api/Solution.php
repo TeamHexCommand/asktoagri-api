@@ -15,7 +15,7 @@ class Solution extends Api implements ApiInterface
     public function getQuery(string $query): string
     {
         $q = [
-            "add" => "INSERT INTO {$this->table} (`user`,`title`,`body`,`file`,`crops`,`category`,`district`,`common`) VALUES (?,?,?,?,?,?,?,?);",
+            "add" => "INSERT INTO {$this->table} (`user`,`type`,`title`,`body`,`file`,`crops`,`category`,`district`,`common`) VALUES (?,?,?,?,?,?,?,?,?);",
             "getAll" => "SELECT * FROM {$this->table}",
             "getById" => "SELECT * FROM {$this->table} WHERE `id` = ?;",
             "getByUser" => "SELECT * FROM {$this->table} WHERE `user` = ?;",
@@ -49,6 +49,7 @@ class Solution extends Api implements ApiInterface
         try {
             $res = $sql->execute([
                 $model->getUser(),
+                $model->getType(),
                 $model->getTitle(),
                 $model->getBody(),
                 $model->getFile(),
