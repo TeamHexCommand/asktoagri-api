@@ -36,11 +36,19 @@ class Upload extends Api implements ApiInterface
 
         $type = explode(";base64,", $model->getBase64());
 
-        if ($type[0] === "data:audio/mpeg") {
+        if ($type[0] === "data:audio/mpeg" || $type[0] === "audio/x-matroska" || $type[0] === "audio/mp3") {
             $ext = "mp3";
+        } elseif ($type[0] === "audio/ogg") {
+            $ext = "ogg";
         } elseif ($type[0] === "data:video/mpeg" || $type[0] === "data:video/mp4") {
             $ext = "mp4";
+        } elseif ($type[0] === "video/x-matroska") {
+            $ext = "mkv";
+        }elseif ($type[0] === "video/x-msvideo" ) {
+            $ext = "avi";
         } elseif ($type[0] === "data:image/png") {
+            $ext = "png";
+        } elseif ($type[0] === "data:image/jpeg" || type[0] === "data:image/jpg") {
             $ext = "png";
         } else {
             return null;
@@ -49,17 +57,21 @@ class Upload extends Api implements ApiInterface
 
         $file = str_replace('data:video/mpeg;base64,', '', $model->getBase64());
         $file = str_replace('data:image/jpeg;base64,', '', $file);
+        $file = str_replace('data:audio/mpeg;base64,', '', $file);
         $file = str_replace('data:image/png;base64,', '', $file);
         $file = str_replace(' ', '+', $file);
 
         $data = base64_decode($file);
 
         $file = $_SERVER['DOCUMENT_ROOT'] . '/uploads/' . $name . '.' . $ext;
+        // $file = dirname(__FILE__) . '/uploads/' . $name . '.' . $ext;
         // Save Image in the Image Directory
         $success = file_put_contents($file, $data);
 
         $model->setName($name);
         $model->setType($ext);
+
+        // echo $file;
 
         return $model;
     }
