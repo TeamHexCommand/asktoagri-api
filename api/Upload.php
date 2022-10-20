@@ -63,7 +63,7 @@ class Upload extends Api implements ApiInterface
 
         $data = base64_decode($file);
 
-        $file = $_SERVER['DOCUMENT_ROOT'] . '/uploads/' . $name . '.' . $ext;
+        $file = $_SERVER['DOCUMENT_ROOT'] . '/asktoagri/uploads/' . $name . '.' . $ext;
         // $file = dirname(__FILE__) . '/uploads/' . $name . '.' . $ext;
         // Save Image in the Image Directory
         $success = file_put_contents($file, $data);
