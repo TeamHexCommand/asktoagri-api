@@ -53,11 +53,10 @@ class Solution extends Api implements ApiInterface
                 $model->getTitle(),
                 $model->getBody(),
                 $model->getFile(),
-                $model->getUser(),
                 $model->getCrops(),
                 $model->getCategory(),
                 $model->getDistrict(),
-                $model->getCommon(),
+                $model->getCommon()
             ]);
 
             if ($res) {

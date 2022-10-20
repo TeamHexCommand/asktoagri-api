@@ -18,11 +18,11 @@ class Query extends Api implements ApiInterface
             "add" => "INSERT INTO {$this->table} (`user`,`type`,`title`,`body`,`file`,`crops`,`category`,`district`) VALUES (?,?,?,?,?,?,?,?);",
             "getAll" => "SELECT * FROM {$this->table}",
             "getById" => "SELECT * FROM {$this->table} WHERE `id` = ?;",
-            "getByUser" => "SELECT * FROM {$this->table} WHERE `user` = ?;",
+            "getByUser" => "SELECT * FROM {$this->table} WHERE `user` = ? ORDER BY `id` DESC LIMIT 20;",
             "getByUserResolved" => "SELECT * FROM {$this->table} WHERE `user` = ? and `resolved` = 1;",
             "getByUserNotResolved" => "SELECT * FROM {$this->table} WHERE `user` = ? and `resolved` = 0;",
             "getByResolved" => "SELECT * FROM {$this->table} WHERE `resolved` = 1;",
-            "getByNotResolved" => "SELECT * FROM {$this->table} WHERE `resolved` = 0;",
+            "getByNotResolved" => "SELECT * FROM {$this->table} WHERE `resolved` = 0 ORDER BY `id` DESC LIMIT 20;",
             "getByTitle" => "SELECT * FROM {$this->table} WHERE `title` = ?;",
             "getByCrops" => "SELECT * FROM {$this->table} WHERE `crops` = ?;",
             "getByCropsResolved" => "SELECT * FROM {$this->table} WHERE `crops` = ? and `resolved` = 1;",
@@ -33,6 +33,7 @@ class Query extends Api implements ApiInterface
             "getByDistrict" => "SELECT * FROM {$this->table} WHERE `district` = ?;",
             "getByDistrictResolved" => "SELECT * FROM {$this->table} WHERE `district` = ? and `resolved` = 1;",
             "getByDistrictNotResolved" => "SELECT * FROM {$this->table} WHERE `district` = ? and `resolved` = 0;",
+            "updateSolution" => "UPDATE {$this->table} SET `resolved` = 1, `solution` = ? WHERE `id` = ?;",
             "last" => "SELECT * FROM {$this->table} ORDER BY `id` DESC LIMIT 1;"
         ];
         return $q[$query];
@@ -62,7 +63,6 @@ class Query extends Api implements ApiInterface
                 $model->getTitle(),
                 $model->getBody(),
                 $model->getFile(),
-                $model->getUser(),
                 $model->getCrops(),
                 $model->getCategory(),
                 $model->getDistrict()
@@ -147,6 +147,31 @@ class Query extends Api implements ApiInterface
         self::display();
     }
 
+    public function update(QueryModel $model, string $filter)
+    {
+        $sql = self::$con->prepare($this->getQuery($filter));
+
+        try {
+            switch ($filter) {
+                case "updateSolution" :
+                {
+                    $this->exec = $sql->execute([$model->getSolution(), $model->getId()]);
+                    break;
+                }
+            }
+
+            if ($this->exec) {
+                $this->res = self::getResponse(200, array("msg" => "Record updated", "data" => null));
+            } else {
+                $this->res = self::getResponse(400, array("msg" => "No records", "data" => null));
+            }
+
+        } catch (\PDOException $e) {
+            $this->res = self::getResponse(400, array("msg" => "Failed to update record", "data" => null));
+        }
+        self::display();
+    }
+
 
     public function handle(string $request, array $param, string $filter, string $type = "")
     {
@@ -162,6 +187,11 @@ class Query extends Api implements ApiInterface
             case "get":
             {
                 self::get($model, $filter);
+                break;
+            }
+            case "update":
+            {
+                self::update($model, $filter);
                 break;
             }
         }

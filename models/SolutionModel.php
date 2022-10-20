@@ -13,7 +13,7 @@ class SolutionModel
     public int $crops;
     public int $category;
     public int $district;
-    public bool $common;
+    public int $common;
     public string $tags;
     public string $createdAt;
 
@@ -21,13 +21,14 @@ class SolutionModel
     {
         $this->id = $ary['id'] ?? 0;
         $this->user = $ary['user'] ?? 0;
+        $this->type = $ary['type'] ?? "";
         $this->title = $ary['title'] ?? "";
         $this->body = $ary['body'] ?? "";
         $this->file = $ary['file'] ?? 0;
         $this->crops = $ary['crops'] ?? 0;
         $this->category = $ary['category'] ?? 0;
         $this->district = $ary['district'] ?? 0;
-        $this->common = $ary['common'] ?? false;
+        $this->common = $ary['common'] ?? 0;
         $this->tags = $ary['tags'] ?? "";
         $this->createdAt = $ary['createdAt'] ?? "";
     }
@@ -122,12 +123,12 @@ class SolutionModel
         return $this->district;
     }
 
-    public function setCommon(bool $common)
+    public function setCommon(int $common)
     {
         $this->common = $common;
     }
 
-    public function getCommon(): bool
+    public function getCommon(): int
     {
         return $this->common;
     }
