@@ -1,0 +1,5 @@
+DB_DSN=mysql:host=localhost;port=3306;dbname={{database}}
+DB_USER={{username}}
+DB_PASSWORD={{password}}
+DB_HOST=localhost:3306
+DB_DATABASE={{database}}
