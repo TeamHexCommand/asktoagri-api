@@ -1,1 +1,4 @@
-## Test Backend for Ask to Agri Expert into PHP
+## API for Ask to Agri Expert
+
+### Setup
+Rename .envexample to .env and set database connection values
